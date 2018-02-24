@@ -188,9 +188,12 @@ exports.plugin = function(schema, options) {
               function(err, updatedIdentityCounter) {
                 if (err) return next(err);
                 // If there are no errors then go ahead and set the document's field to the current count.
-                doc[settings.field] = `${updatedIdentityCounter.prefix}/${
-                  updatedIdentityCounter.count
-                }/${updatedIdentityCounter.suffix}`;
+                doc[settings.field] = updatedIdentityCounter.suffix
+                  ? updatedIdentityCounter.prefix +
+                    updatedIdentityCounter.count.pad(3) +
+                    updatedIdentityCounter.suffix
+                  : updatedIdentityCounter.prefix +
+                    updatedIdentityCounter.count.pad(3);
                 // Continue with default document save functionality.
                 next();
               }
