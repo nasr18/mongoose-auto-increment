@@ -24,7 +24,7 @@ exports.initialize = function(connection) {
         field: { type: String, require: true },
         count: { type: Number, default: 0 },
         prefix: { type: String, default: 'ABC' },
-        suffix: { type: Number, default: new Date().getFullYear() },
+        suffix: { type: String, default: new Date().getFullYear() },
         fieldType: { type: String, default: 'Number' },
       });
 
